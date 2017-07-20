@@ -1,0 +1,30 @@
+Initialize engine version: 5.6.1f1 (2860b30f0b54)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 780 (ID=0x1004)
+    Vendor:   NVIDIA
+    VRAM:     3039 MB
+    Driver:   22.21.13.8205
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.024 seconds
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Universität\Masterarbeit\GitHub\UnityFoveatedRendering\UnityFoveatedRendering_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.797249 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: e84 -> priority: 1 
+  Thread -> id: 3ce8 -> priority: 1 
+  Thread -> id: 3ee4 -> priority: 1 
+  Thread -> id: 1290 -> priority: 1 
