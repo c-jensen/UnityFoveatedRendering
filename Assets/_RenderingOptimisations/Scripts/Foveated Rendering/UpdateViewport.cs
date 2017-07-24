@@ -17,12 +17,16 @@ public class UpdateViewport : MonoBehaviour
     [HideInInspector]
     public Vector2 focusPoint;      // the current position of gaze/focus for the foveated rendering. 
     [HideInInspector]
+    public bool focusChanged;      // the current position of gaze/focus for the foveated rendering. 
+    [HideInInspector]
     public Vector2 highPolyCamDimensions;               // the camera render texture width and height. External scripts need access to this, but it shouldn't be accessible from the Unity Inspector and is therefore hidden
 
     private Camera myCamRef;                            // this is a reference to the camera component attached to this game object
     private float helperValX;                           // two helper variables 
     private float helperValY;
     private float multiscopicHelper;    // another helper value for the vanishing point of multiscopic cameras
+
+    public float frustumHeight = 0.0f;
 
     void OnEnable()     // in order to be able to dynamically enable and disable the camera this should not be executed in the 'Start' function. 'OnEnable' function is used.
     {
@@ -45,7 +49,7 @@ public class UpdateViewport : MonoBehaviour
             myCamRef.aspect = 1;    // it is important to explicitly set the aspect ratio of the multiscopic camera to 1 in order to keep the proper aspect ratio.
         }
 
-        float frustumHeight = Mathf.Tan(baseCamRef.fieldOfView / 2f * Mathf.Deg2Rad); // simpliefied formula from here: " http://docs.unity3d.com/Manual/FrustumSizeAtDistance.html ". It is used to calculate the frustum height and that value is used to reverse calculate the field of view of the foveated camera.
+        frustumHeight = Mathf.Tan(baseCamRef.fieldOfView / 2f * Mathf.Deg2Rad); // simpliefied formula from here: " http://docs.unity3d.com/Manual/FrustumSizeAtDistance.html ". It is used to calculate the frustum height and that value is used to reverse calculate the field of view of the foveated camera.
         myCamRef.fieldOfView = 2f * Mathf.Atan(frustumHeight * regionResolutionMultiplier) * Mathf.Rad2Deg;     // a reverse calculation of the field of view of the foveated camera. 
         helperValY = frustumHeight * myCamRef.nearClipPlane * 2;    // this is a helper variable and is a result of a lot of trial and error. Originally the foveated system only worked for present field of view, aspect ratio and clipping plain. The helper variables make it possible to change these values and the system would still provide the proper vanishing point for the purposes of foveated rendering.
         helperValX = helperValY * (float)(Screen.width) / (float)(Screen.height);       // the helper for Y is the X helper multiplied by the aspect ratio of the screen. This enables the use of other aspect ratios.
@@ -81,6 +85,8 @@ public class UpdateViewport : MonoBehaviour
     {
         if (_newFocusPoint.x > 0 && _newFocusPoint.x < Screen.width && _newFocusPoint.y > 0 && _newFocusPoint.y < Screen.height)    //check if the focus point is in the screen. If it's not (the mouse is outside of the application are or the user looks away from the application) the foveated system is not refreshed.    
         {
+            if (_newFocusPoint != focusPoint)
+                focusChanged = true;
             focusPoint = new Vector2(
                             Mathf.Clamp(_newFocusPoint.x, 0, Screen.width),
                             Mathf.Clamp(_newFocusPoint.y, 0, Screen.height));     // clamping the focusPoint to minimize weird behaviour.
@@ -91,6 +97,7 @@ public class UpdateViewport : MonoBehaviour
             }
             else
             {
+                //Debug.Log("X " + (0.5f - focusPoint.x / Screen.width) + " Y " + (0.5f - focusPoint.y / Screen.height));
                 SetVanishingPoint(myCamRef, new Vector3(((0.5f - focusPoint.x / Screen.width) * helperValX), ((0.5f - focusPoint.y / Screen.height) * helperValY)));
             }
         }

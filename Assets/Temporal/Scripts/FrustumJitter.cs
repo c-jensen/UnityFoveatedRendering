@@ -265,6 +265,7 @@ public class FrustumJitter : MonoBehaviour
         Clear();
     }
 
+
     void OnPreCull()
     {
         // update motion dir

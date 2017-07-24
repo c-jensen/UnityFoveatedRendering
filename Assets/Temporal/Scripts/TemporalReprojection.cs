@@ -18,6 +18,7 @@ public class TemporalReprojection : EffectBase
     private Camera _camera;
     private FrustumJitter _frustumJitter;
     private VelocityBuffer _velocityBuffer;
+    private UpdateViewport update;
 
     public Shader reprojectionShader;
     private Material reprojectionMaterial;
@@ -52,6 +53,7 @@ public class TemporalReprojection : EffectBase
         _camera = GetComponent<Camera>();
         _frustumJitter = GetComponent<FrustumJitter>();
         _velocityBuffer = GetComponent<VelocityBuffer>();
+        update = _camera.GetComponent<UpdateViewport>();
     }
 
     void Clear()
@@ -139,7 +141,21 @@ public class TemporalReprojection : EffectBase
         reprojectionMaterial.SetTexture("_VelocityBuffer", _velocityBuffer.activeVelocityBuffer);
         reprojectionMaterial.SetTexture("_VelocityNeighborMax", _velocityBuffer.activeVelocityNeighborMax);
         reprojectionMaterial.SetTexture("_MainTex", source);
-        reprojectionMaterial.SetTexture("_PrevTex", reprojectionBuffer[eyeIndex, indexRead]);
+        if (update != null)
+        {
+            if (update.focusChanged)
+            {
+                reprojectionMaterial.SetTexture("_PrevTex", source);
+                update.focusChanged = false;
+            }else
+            {
+                reprojectionMaterial.SetTexture("_PrevTex", reprojectionBuffer[eyeIndex, indexRead]);
+            }
+        }
+        else
+        {
+            reprojectionMaterial.SetTexture("_PrevTex", reprojectionBuffer[eyeIndex, indexRead]);
+        }
         reprojectionMaterial.SetFloat("_FeedbackMin", feedbackMin);
         reprojectionMaterial.SetFloat("_FeedbackMax", feedbackMax);
         reprojectionMaterial.SetFloat("_MotionScale", motionBlurStrength * (motionBlurIgnoreFF ? Mathf.Min(1.0f, 1.0f / _velocityBuffer.timeScale) : 1.0f));

@@ -109,14 +109,35 @@ public static class CameraExtension
         if (camera == null)
             return Vector4.zero;
 
-        float oneExtentY = camera.orthographic ? camera.orthographicSize : Mathf.Tan(0.5f * Mathf.Deg2Rad * camera.fieldOfView);
-        float oneExtentX = oneExtentY * camera.aspect;
-        float texelSizeX = oneExtentX / (0.5f * camera.pixelWidth);
-        float texelSizeY = oneExtentY / (0.5f * camera.pixelHeight);
-        float oneJitterX = texelSizeX * texelOffsetX;
-        float oneJitterY = texelSizeY * texelOffsetY;
+        UpdateViewport update = camera.GetComponent<UpdateViewport>();
 
-        return new Vector4(oneExtentX, oneExtentY, oneJitterX, oneJitterY);// xy = frustum extents at distance 1, zw = jitter at distance 1
+        if (update == null)
+        {
+            float oneExtentY = camera.orthographic ? camera.orthographicSize : Mathf.Tan(0.5f * Mathf.Deg2Rad * camera.fieldOfView);
+            float oneExtentX = oneExtentY * camera.aspect;
+            float texelSizeX = oneExtentX / (0.5f * camera.pixelWidth);
+            float texelSizeY = oneExtentY / (0.5f * camera.pixelHeight);
+            float oneJitterX = texelSizeX * texelOffsetX;
+            float oneJitterY = texelSizeY * texelOffsetY;
+
+            return new Vector4(oneExtentX, oneExtentY, oneJitterX, oneJitterY);// xy = frustum extents at distance 1, zw = jitter at distance 1
+        }
+        else
+        {
+           // float oneExtentY = update.frustumHeight * camera.nearClipPlane * 2;    // this is a helper variable and is a result of a lot of trial and error. Originally the foveated system only worked for present field of view, aspect ratio and clipping plain. The helper variables make it possible to change these values and the system would still provide the proper vanishing point for the purposes of foveated rendering.
+            //float oneExtentX = oneExtentY * (float)(Screen.width) / (float)(Screen.height);
+            float oneExtentY = camera.orthographic ? camera.orthographicSize : Mathf.Tan(0.5f * Mathf.Deg2Rad * camera.fieldOfView);
+            float oneExtentX = oneExtentY * camera.aspect;
+            float texelSizeX = oneExtentX / (0.5f * camera.pixelWidth);
+            float texelSizeY = oneExtentY / (0.5f * camera.pixelHeight);   
+
+            float oneJitterX = texelSizeX * texelOffsetX - ((0.5f - update.focusPoint.x / Screen.width) * (update.frustumHeight * 2 * (float)(Screen.width) / (float)(Screen.height))); 
+            float oneJitterY = texelSizeY * texelOffsetY - ((0.5f - update.focusPoint.y / Screen.height) * (update.frustumHeight * 2));
+
+            //Debug.Log("Offcenter x " + update.persOffset.x + " Offcenter y " + update.persOffset.y);
+
+            return new Vector4(oneExtentX, oneExtentY, oneJitterX, oneJitterY);// xy = frustum extents at distance 1, zw = jitter at distance 1
+        }
     }
 
 #if SUPPORT_STEREO
@@ -167,6 +188,8 @@ public static class CameraExtension
         if (camera.orthographic)
             return Matrix4x4Extension.GetOrthographicProjection(xm, xp, ym, yp, cn, cf);
         else
+        {
             return Matrix4x4Extension.GetPerspectiveProjection(xm * cn, xp * cn, ym * cn, yp * cn, cn, cf);
+        }
     }
 }

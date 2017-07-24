@@ -10,7 +10,7 @@ public class Set_Res_OuterLayer : MonoBehaviour {
 
     void Update()
     {
-        if(x % 2 == 0)
+        if (x % 2 == 0)
             renderCam.enabled = true;
         else
             renderCam.enabled = false;
