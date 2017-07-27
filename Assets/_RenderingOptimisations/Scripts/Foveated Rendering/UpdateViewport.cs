@@ -49,7 +49,7 @@ public class UpdateViewport : MonoBehaviour
             myCamRef.aspect = 1;    // it is important to explicitly set the aspect ratio of the multiscopic camera to 1 in order to keep the proper aspect ratio.
         }
 
-        frustumHeight = Mathf.Tan(baseCamRef.fieldOfView / 2f * Mathf.Deg2Rad); // simpliefied formula from here: " http://docs.unity3d.com/Manual/FrustumSizeAtDistance.html ". It is used to calculate the frustum height and that value is used to reverse calculate the field of view of the foveated camera.
+        frustumHeight = Mathf.Tan(baseCamRef.fieldOfView / 2 * Mathf.Deg2Rad); // simpliefied formula from here: " http://docs.unity3d.com/Manual/FrustumSizeAtDistance.html ". It is used to calculate the frustum height and that value is used to reverse calculate the field of view of the foveated camera.
         myCamRef.fieldOfView = 2f * Mathf.Atan(frustumHeight * regionResolutionMultiplier) * Mathf.Rad2Deg;     // a reverse calculation of the field of view of the foveated camera. 
         helperValY = frustumHeight * myCamRef.nearClipPlane * 2;    // this is a helper variable and is a result of a lot of trial and error. Originally the foveated system only worked for present field of view, aspect ratio and clipping plain. The helper variables make it possible to change these values and the system would still provide the proper vanishing point for the purposes of foveated rendering.
         helperValX = helperValY * (float)(Screen.width) / (float)(Screen.height);       // the helper for Y is the X helper multiplied by the aspect ratio of the screen. This enables the use of other aspect ratios.
@@ -63,7 +63,7 @@ public class UpdateViewport : MonoBehaviour
         switch (focusPointMode)     // start the appropriate coroutine for the selected mode. If the mode is "ExternallySupplied", the user needs to supply a focus point. 
         {
             case FocusPointModes.MiddleOfScreen:
-                SetFocusPoint(new Vector2(Screen.width / 2, Screen.height / 2));
+                SetFocusPoint(new Vector2((float)Screen.width / 2, (float)Screen.height / 2));
                 break;
             case FocusPointModes.MousePosition:
                 StartCoroutine("FocusPointModeMousePosUpdate");
@@ -83,6 +83,7 @@ public class UpdateViewport : MonoBehaviour
 
     public void SetFocusPoint(Vector2 _newFocusPoint)       // this function sets the position of the foveated region.
     {
+        Debug.LogError("Width: " + Screen.width + " Heigth: " + Screen.height);
         if (_newFocusPoint.x > 0 && _newFocusPoint.x < Screen.width && _newFocusPoint.y > 0 && _newFocusPoint.y < Screen.height)    //check if the focus point is in the screen. If it's not (the mouse is outside of the application are or the user looks away from the application) the foveated system is not refreshed.    
         {
             if (_newFocusPoint != focusPoint)
