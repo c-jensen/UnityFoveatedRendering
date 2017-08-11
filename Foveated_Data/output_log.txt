@@ -1,30 +1,60 @@
-Initialize engine version: 5.6.1f1 (2860b30f0b54)
+Initialize engine version: 5.6.0f3 (497a0f351392)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Renderer: NVIDIA GeForce GTX 980 Ti (ID=0x17c8)
     Vendor:   NVIDIA
-    VRAM:     8081 MB
-    Driver:   22.21.13.8476
+    VRAM:     3072 MB
+    Driver:   21.21.13.7653
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.013 seconds
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: D:\Unity Projects\Github\UnityFoveatedRendering\Foveated_Data\Managed\System.dll (this message is harmless)
-desktop: 3840x2160 60Hz; virtual: 3840x2160 at 0,0
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.VR.dll (this message is harmless)
+Loading D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\UnityEngine.VR.dll into Unity Child Domain
+- Completed reload, in  0.020 seconds
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Git\UnityFoveatedRendering\Foveated_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
+desktop: 3840x2160 60Hz; virtual: 8640x2456 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 0.638862 ms
+OpenVR initialized!
+ 
+(Filename:  Line: 424)
+
+UnloadTime: 0.520810 ms
+Connected to lighthouse:LHR-F3298EAA
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 46d8 -> priority: 1 
-  Thread -> id: 2b50 -> priority: 1 
-  Thread -> id: 218c -> priority: 1 
-  Thread -> id: 44fc -> priority: 1 
+  Thread -> id: 331c -> priority: 1 
+  Thread -> id: 38d4 -> priority: 1 
+  Thread -> id: 27b4 -> priority: 1 
+  Thread -> id: 35dc -> priority: 1 
+Width: 2160 Heigth: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Width: 2160 Heigth: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Width: 2160 Heigth: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Width: 2160 Heigth: 1200
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+OpenVR Shutdown
+ 
+(Filename:  Line: 889)
+

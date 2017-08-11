@@ -20,10 +20,10 @@ public class RenderTexturesDrawingOrder : MonoBehaviour
 		GL.PushMatrix();
         if (Event.current.type.Equals(EventType.Repaint))//only draw once a frame
         {
-			Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), outerTexture);     
-            Graphics.DrawTexture(new Rect(innerViewport.focusPoint.x - (middleTexture.width / 2), Screen.height - innerViewport.focusPoint.y - (middleTexture.height / 2), middleTexture.width, middleTexture.height), middleTexture);
-            Graphics.DrawTexture(new Rect(innerViewport.focusPoint.x - (innerTexture.width/2), Screen.height - innerViewport.focusPoint.y - (innerTexture.height/2), innerTexture.width, innerTexture.height), innerTexture);
-		}
+			Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), outerTexture);
+            Graphics.DrawTexture(new Rect(innerViewport.focusPoint.x - (Screen.height * 0.4f / 2), Screen.height - innerViewport.focusPoint.y - (Screen.height * 0.4f / 2), Screen.height * 0.4f, Screen.height * 0.4f), middleTexture);
+            Graphics.DrawTexture(new Rect(innerViewport.focusPoint.x - (Screen.height * 0.2f / 2), Screen.height - innerViewport.focusPoint.y - (Screen.height * 0.2f / 2), Screen.height * 0.2f, Screen.height * 0.2f), innerTexture);
+        }
 
 		GL.PopMatrix();
 		RenderTexture.active = null;

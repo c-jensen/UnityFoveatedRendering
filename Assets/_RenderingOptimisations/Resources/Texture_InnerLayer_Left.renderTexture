@@ -9,7 +9,7 @@ RenderTexture:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
-  m_Width: 480
+  m_Width: 120
   m_Height: 240
   m_AntiAliasing: 1
   m_DepthFormat: 1
@@ -18,12 +18,9 @@ RenderTexture:
   m_GenerateMips: 0
   m_SRGB: 0
   m_TextureSettings:
-    serializedVersion: 2
     m_FilterMode: 1
     m_Aniso: 0
     m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
+    m_WrapMode: 1
   m_Dimension: 2
   m_VolumeDepth: 1
